@@ -1,0 +1,200 @@
+.sel_item_box {
+padding: 3px 1px;
+}
+
+.sel_item_del {
+background: url(images/im_tabx.gif) 0 -13px;
+opacity: 0.2;
+margin-top: 2px;
+margin-left: 5px;
+width: 11px;
+height: 11px;
+}
+
+.sel_item_del:hover {
+opacity: 1;
+}
+
+.sel_pointer {
+width: 21px;
+height: 24px;
+position: absolute;
+cursor: pointer;
+right: 2px;
+top: 0px;
+background: url(images/wide_dd.gif) transparent no-repeat 2px 2px;
+}
+
+.sel_input {
+margin: 0;
+padding: 5px 4px 4px 5px;
+width: 399px;
+height: 19px;
+line-height: 1.27em;
+background: #FFF;
+color: #000;
+border: 1px solid #C3CBD4;
+box-shadow: none;
+outline: none;
+}
+
+.sel_box {
+width: 410px;
+height: auto;
+position: absolute;
+}
+
+.summary_tabs {
+border: 1px solid #DAE1E8;
+}
+
+.sel_options {
+border: solid 1px #ccc;
+border-top: none;
+list-style: none;
+box-shadow: 0px 1px 5px #ddd;
+position: relative;
+z-index: 2000;
+margin: 0;
+padding: 0;
+background: #fff;
+overflow: auto;
+overflow-x: hidden;
+max-height: 250px;
+}
+
+.sel_option_selected {
+background: #6C8CAC;
+border-color: #537698;
+}
+
+.sel_option, .sel_option_selected{
+padding: 5px 0 3px 5px;
+display: block;
+border-bottom: solid 1px #ddd;
+overflow: hidden;
+color: #333;
+}
+
+.sel_option_photo {
+vertical-align: middle;
+float: left;
+margin-right: 5px;
+width: 40px;
+height:40px;
+}
+
+.sel_option_text {
+display: block;
+font-weight: bold;
+color: #2D5979;
+overflow: hidden;
+margin: 1px 10px;
+white-space: nowrap;
+line-height: 40px;
+}
+
+.sel_option_selected .sel_option_text {
+color: #FFF;
+}
+
+.sel_option, .sel_option_selected, .sel_option_photo, .sel_option_text {
+cursor: pointer;
+}
+
+a.sel_option:hover {
+background: #E1E8ED;
+border-color: #E1E8ED;
+text-decoration: none;
+}
+
+a.sel_option_selected  {
+text-decoration: none;
+}
+
+.sel_checkbox {
+float: right;
+display: block;
+width: 18px;
+height: 16px;
+margin: 13px 5px;
+background: url(images/check_follow.gif) 0 0 no-repeat;
+}
+
+a.sel_option span.sel_checkbox {
+opacity: 0;
+}
+
+a.sel_option:hover span.sel_checkbox {
+opacity: 0.2;
+}
+
+a.sel_option_selected span.sel_checkbox {
+opacity: 1;
+}
+
+/*SelBox*/
+
+.input_back {
+    position: absolute;
+    color: #8c8e91;
+    z-index: 90;
+}
+
+.input_back_content {
+    padding: 0 1px;
+    white-space: nowrap;
+    line-height: normal;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.summary_tab, .summary_tab_plain, .summary_tab_sel {
+    font-size: 12.5px;
+    padding: 4px;
+    position: relative;
+}
+
+.fl_l {
+    float: left;
+}
+
+.summary_tab2 {
+    border-radius: 2px;
+    padding: 4px 5px 3px;
+    display: block;
+}
+
+.summary_tab_sel .summary_tab3 {
+    color: #fff;
+}
+.summary_tab3 {
+    max-width: 230px;
+    height: 15px;
+    overflow: hidden;
+    color: #2a5885;
+    text-overflow: ellipsis;
+    line-height: 110%;
+    padding: 0 3px;
+}
+
+.summary_tabs {
+    padding: 11px 16px;
+    border-bottom: 1px solid #e7e8ec;
+	background-color: #eee;
+}
+
+.summary_tab_sel .summary_tab2, .summary_tab_sel .summary_tab2:hover {
+    background: #6285af;
+	text-decoration: none;
+}
+.summary_tab2 {
+    border-radius: 2px;
+    padding: 4px 5px 3px;
+    display: block;
+}
+
+.summary_tab2:hover {
+    background: #e5ebf1;
+    text-decoration: none;
+}

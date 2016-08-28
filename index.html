@@ -1,0 +1,103 @@
+<!DOCTYPE html>	
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html" charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Позволяет найти записи с наибольшим количеством лайков, комментариев и репостов, а также первые записи">
+
+<link rel="alternate" media="only screen and (max-width: 640px)"/>
+<link type="text/css" rel="stylesheet" href="style.css">
+<link type="text/css" rel="stylesheet" href="selbox.css">
+
+<script type="text/javascript" src="https://vk.com/js/api/xd_connection.js"></script>
+<script type="text/javascript" src="selbox.js"></script>
+<script type="text/javascript" src="generalInfo.js"></script>
+<script type="text/javascript" src="vk_analysis.js"></script>
+<script type="text/javascript" src="emoji.js"></script>
+<script type="text/javascript" src="vk_show.js"></script>
+<script type="text/javascript" src="postlist.js"></script>
+<script type="text/javascript" src="userlist.js"></script>
+<script type="text/javascript" src="firstposts.js"></script>
+<script type="text/javascript" src="settings.js"></script>
+<script type="text/javascript" src="tabManager.js"></script>
+<script type="text/javascript" src="amcharts/amcharts.js"></script>
+<script type="text/javascript" src="amcharts/serial.js"></script>
+<script type="text/javascript" src="amcharts/init.js"></script>
+
+</head>
+<body>
+
+<div class="my_header">
+  <p class="start_desc">Укажите адрес страницы пользователя, сообщества или стены, записи на которой необходимо проанализировать (записи с наибольшим количеством лайков, комментариев, репостов, а также самые первые записи на стене)</p>
+  <div id="selbox_elem"></div>
+  <div class="button_blue"><button onclick="VKAnalysis.show();" id="wall_search_btn">Анализ</button></div>
+  <div class="share_with_friends"><a href="/" onclick="VK.callMethod('showInviteBox');return false;">Поделиться с друзьями</a></div>
+  <div class="more_settings"><a id="more_settings_link" class="noselect" onclick="sett.showOrHide()">Дополнительные параметры</a></div>
+  <div id="more_settings_content" style="display:none">
+  <div class="settings_row"><div class="checkbox off" onclick="sett.checkbox('comments', this)"><div></div>Анализ комментариев</div></div>
+  <div class="settings_row"><div class="checkbox off" onclick="sett.checkbox('likes', this)"><div></div>Анализ лайков</div></div>
+  <div class="settings_row" id="friend_likes_checkbox_row" style="display:none"><div id="friend_likes_checkbox" class="checkbox off" onclick="sett.checkbox('friend_likes', this)" ><div></div>Анализ лайков только друзей</div></div>
+  <div class="settings_row"><span style="line-height: 1.27em;margin-right:5px">Продолжительность:</span><select id="sett_time">
+	<option value="week">За последнюю неделю</option>
+	<option value="month">За последний месяц</option>
+	<option value="quarter">За последние три месяца</option>
+	<option value="half_year">За последние полгода</option>
+	<option value="year">За последний год</option>
+	<option value="all" selected="selected">За все время</option>
+	</select></div>
+  </div>
+</div>
+
+
+<div id="my_progress"><div id="progress_bar" class="docs_progress_wrap"><div id="progress_elem" class="docs_progress" style="width: 0%;"></div></div></div>
+<div id="my_result" style="display: none">
+<div id="main_result">
+	<div class="t_bar tabs clear_fix">
+	<ul class="t0" id="res_menu">
+		<li id="tab_general"><a><b class="t1"></b><b class="tl2"></b><b class="tab_word">Общее</b></a></li>
+		<li id="tab_top_posts_by_likes"><a><b class="tl1"></b><b class="tl2"></b><b class="tab_word">ТОП постов по лайкам</b></a></li>
+		<li id="tab_top_posts_by_comments"><a><b class="tl1"></b><b class="tl2"></b><b class="tab_word">ТОП постов по комментариям</b></a></li>
+		<li id="tab_top_posts_by_reposts"><a><b class="tl1"></b><b class="tl2"></b><b class="tab_word">ТОП постов по репостам</b></a></li>
+		<li id="tab_first_posts"><a><b class="tl1"></b><b class="tl2"></b><b class="tab_word">Первые записи</b></a></li>
+		<li id="tab_top_comments" style="display:none"><a><b class="tl1"></b><b class="tl2"></b><b class="tab_word">ТОП комментариев</b></a></li>
+		<li id="tab_top_post_authors" style="display:none"><a><b class="tl1"></b><b class="tl2"></b><b class="tab_word">ТОП авторов постов</b></a></li>
+		<li id="tab_popular_reposts" style="display:none"><a><b class="tl1"></b><b class="tl2"></b><b class="tab_word">Популярные репосты</b></a></li>
+		<li id="tab_top_comment_authors" style="display:none"><a><b class="tl1"></b><b class="tl2"></b><b class="tab_word">ТОП комментаторов</b></a></li>
+		<li id="tab_top_like_authors" style="display:none"><a><b class="tl1"></b><b class="tl2"></b><b class="tab_word">ТОП лайкавших</b></a></li>
+		<li id="tab_author_posts" style="display:none"><a><b class="tl1"></b><b class="tl2"></b><b class="tab_word">Посты от автора</b></a></li>
+	</ul>
+	</div>
+	<div id ="tab_contents">
+	<div id="tab_general_content" class="info_content general_content"></div>
+	<div id="tab_top_posts_by_likes_content"></div>
+	<div id="tab_top_posts_by_comments_content"></div>
+	<div id="tab_top_posts_by_reposts_content"></div>
+	<div id="tab_first_posts_content"></div>
+	<div id="tab_top_comments_content"></div>
+	<div id="tab_top_post_authors_content" class="info_content"></div>
+	<div id="tab_popular_reposts_content" class="info_content"></div>
+	<div id="tab_top_comment_authors_content" class="info_content"></div>
+	<div id="tab_top_like_authors_content" class="info_content"></div>
+	<div id="tab_author_posts_content"></div>
+	</div>
+</div>
+<div id="err_result"></div>
+</div>
+<script type="text/javascript">
+this_= this;
+tm = 0;
+VK.init(function() {}, function() {}, '5.34');
+VK.callMethod("scrollSubscribe", false);
+VK.addCallback('onScroll', function(scrollTop, height) {
+	if (window.innerHeight < scrollTop + 500 && document.getElementById('my_result').style.display != 'none' &&
+			document.getElementById('main_result').style.display != 'none') {
+		FirstPosts.scroll();
+		PostList.scroll();
+		UserList.scroll();
+	}
+});
+selbox = SelBox('selbox_elem');
+tabs = tabManager('res_menu', 'tab_contents');
+</script>
+</body>
+</html>
